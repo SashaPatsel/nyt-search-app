@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>NYT</title>
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  
+    <!-- <script type="text/javascript" src="assets/javascript/app.js"></script> -->
+    
+
+</head>
+
+<body>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="jumbotron title">
+				  <h1>New York Times Search</h1>
+				</div>
+		
+		<div class="row">
+			<div class="panel panel-default">
+			  	<div class="panel-heading">
+			   		<h3 class="panel-title">Panel title</h3>
+			  	</div>
+
+
+			  	<div class="panel-body">
+					<div class="input-group input-group-lg user-query">
+						  <p>Search term</p>
+						  <input type="text" class="form-control"aria-describedby="sizing-addon1">
+					</div>
+
+					<br>
+					<p>Number of records to retrieve</p>
+					<div class="input-group records">
+					      <input type="text" class="form-control" aria-label="...">
+						     <div class="input-group-btn">
+					        	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					        	 <span class="caret"></span></button>
+					        	<ul class="dropdown-menu dropdown-menu-right">
+						          <li><a href="#">1</a></li>
+						          <li><a href="#">5</a></li>
+						          <li><a href="#">10</a></li>
+					        	</ul>
+					      	</div>
+					</div>
+
+					<br>
+					<div class="input-group input-group-lg start-year">
+						  <p> Start Year (optional)</p>
+						  <input type="text" class="form-control" aria-describedby="sizing-addon1">
+					</div>
+
+					<br>
+					<div class="input-group input-group-lg end-year">
+						  <p> End Year (optional) </p>
+						  <input type="text" class="form-control" aria-describedby="sizing-addon1">
+					</div>
+
+					<br>
+
+					<button type=“button” class="btn btn-primary search">Search</button>
+
+					<button type=“button” class="btn btn-primary clear">Clear Results</button>
+			  	</div>
+			  	<div class="col-md-1"></div>
+			</div>
+		</div>
+
+	
+
+		
+			
+
+
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+					   <h3 class="panel-title">Top Articles</h3>
+					</div>
+			 	 	<div class="panel-body articles"></div>
+			  	</div>
+			</div>	
+			<div class="col-md-1"></div>
+		</div>
+
+
+
+	</div>
+
+
+
+<!-- 	<div class="navbar navbar-default navbar-fixed-bottom">
+		<div class="copyright">
+			<div class="container">
+			<p class="navbar-text" >
+				Copyright
+			</p>
+			</div>
+		</div>
+	</div>
+ -->
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script type="text/javascript">
+          var userQuery = $(".user-query").text();
+        var userBeginDate; 
+        var userEndDate;
+        var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
+        url += '?' + $.param({
+          'api-key': "d8c2d0802f4c43b9ab44f43a1f9ea163",
+          'q': userQuery,
+          'begin_date': "20160101",
+          'end_date': "20160109",
+        });
+        $.ajax({
+          url: url,
+          method: 'GET',
+        }).then(function(result) {
+          console.log(result);
+        }).fail(function(err) {
+          throw err;
+        });
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>
