@@ -9,11 +9,13 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+    
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   
     <!-- <script type="text/javascript" src="assets/javascript/app.js"></script> -->
     
@@ -31,8 +33,8 @@
 				</div>
 		
 		<div class="row">
-			<div class="panel panel-default">
-			  	<div class="panel-heading">
+			<div class="panel panel-primary">
+			  	<div class="panel-heading" id="header">
 			   		<h3 class="panel-title">Search Parameters</h3>
 			  	</div>
 
@@ -43,7 +45,7 @@
 						  <input type="text" class="form-control"aria-describedby="sizing-addon1">
 					</div>
 
-					<br>
+				<br>
 					<p>Number of Records to Retrieve</p>
 					<div class="input-group records">
 					      <input type="text" class="form-control" aria-label="...">
@@ -58,45 +60,43 @@
 					      	</div>
 					</div>
 
-					<br>
+				<br>
 					<div class="input-group input-group-lg start-year">
 						  <p>Start Year (optional)</p>
 						  <input type="text" class="form-control" aria-describedby="sizing-addon1">
 					</div>
 
-					<br>
+				<br>
 					<div class="input-group input-group-lg end-year">
 						  <p>End Year (optional) </p>
 						  <input type="text" class="form-control" aria-describedby="sizing-addon1">
 					</div>
 
-					<br>
+				<br>
 
 					<button type=“button” class="btn btn-primary search">Search</button>
 
 					<button type=“button” class="btn btn-primary clear">Clear Results</button>
 			  	</div>
-			  	<div class="col-md-1"></div>
 			</div>
+
+
+
+
+			<div class="col-md-1"></div>
 		</div>
 
 	
 
-		
-			
-
-
 		<div class="row">
-			<div class="col-md-1"></div>
-			<div class="col-md-10">
-				<div class="panel panel-default">
+			<div class="col-md-12">
+				<div class="panel panel-primary">
 					<div class="panel-heading">
 					   <h3 class="panel-title">Top Articles</h3>
 					</div>
 			 	 	<div class="panel-body articles"></div>
 			  	</div>
 			</div>	
-			<div class="col-md-1"></div>
 		</div>
 
 
@@ -105,52 +105,65 @@
 
 
 
-<!-- 	<div class="navbar navbar-default navbar-fixed-bottom">
+
+	<div class="navbar navbar-default navbar-fixed-bottom">
 		<div class="copyright">
 			<div class="container">
 			<p class="navbar-text" >
-				Copyright
+				Made by Sasha, Jeniifer, Akhil, Joyce
 			</p>
 			</div>
 		</div>
 	</div>
- -->
 
 
-
-
-
-
-
-
-
-
-  
 
 
 
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
       <script type="text/javascript">
           var userQuery = $(".user-query").text();
-        var userBeginDate; 
-        var userEndDate;
+        var userBeginDate = $(".begin-date").text(); 
+        var userEndDate = $(".end-date").text();
+
         var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
         url += '?' + $.param({
           'api-key': "d8c2d0802f4c43b9ab44f43a1f9ea163",
           'q': userQuery,
+          // 'begin_date': userBeginDate + "0101",
+          // 'end_date': userEndDate + "0101",
+
+          // 'q': "trump",
           'begin_date': "20160101",
-          'end_date': "20160109",
+          'end_date': "20170101",
         });
+
         $.ajax({
           url: url,
           method: 'GET',
-        }).then(function(result) {
-          console.log(result);
+        }).then(function(response) {
+            var results = response.response.docs;
+          console.log(response.response.docs);
+          
+          for (var i = 0; i < results.length; i++) {
+              var articleLink = results[i].web_url
+              var header = results[i].abstract
+               $(".articles").append('<div>' + '<a href="' + articleLink + '" <h2>' + header + '</h2>' + '</a>')
+
+         }
+
+
         }).fail(function(err) {
           throw err;
         });
+
+        // if ($(".begin-date").text("")) {
+
+        // }
+
     </script>
 
 
