@@ -131,27 +131,8 @@
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script type="text/javascript">
-          var userQuery = $(".user-query").text();
-        var userBeginDate; 
-        var userEndDate;
-        var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-        url += '?' + $.param({
-          'api-key': "d8c2d0802f4c43b9ab44f43a1f9ea163",
-          'q': userQuery,
-          'begin_date': "20160101",
-          'end_date': "20160109",
-        });
-        $.ajax({
-          url: url,
-          method: 'GET',
-        }).then(function(result) {
-          console.log(result);
-        }).fail(function(err) {
-          throw err;
-        });
-    </script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	  <script type="text/javascript" src="app.js"></script>
 
 
 
